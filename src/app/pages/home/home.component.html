@@ -1,1 +1,155 @@
-<h1>Home</h1>
+<article class="container my-4 mx-auto">
+  <h1 class="my-3">CRUD Database</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of users(); track $index){
+      <!-- Button trigger modal -->
+      <tr role="button" (click)="onShowUser($event, user)" data-bs-toggle="modal" data-bs-target="#userInfo">
+        <th scope=" row">{{$index + 1}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.age}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.gender}}</td>
+        <td>
+          <button class="btn btn-secondary mx-2" (click)="onEdit($event, user)" data-bs-toggle="modal"
+            data-bs-target="#userForm">Edit</button>
+          <button class="btn btn-danger mx-2" (click)="onDelete($event, user._id)">Delete</button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="12">No users found</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <section class="d-flex gap-2">
+    <button class="btn btn-outline-info">Download CSV</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm" (click)="action.set('ADD')">Add
+      User</button>
+  </section>
+</article>
+
+<!-- Modal Add User -->
+<div class="modal fade" id="userForm" tabindex="-1" aria-labelledby="addUserModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="addUserModal">{{action() === 'ADD' ? 'ADD NEW USER' : 'EDIT USER'}}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClose($event)"></button>
+      </div>
+      <form [formGroup]="userForm" class="my-3" (ngSubmit)="action() === 'ADD' ? onAddUser($event) : onEditUser()">
+        @if(isUserAdded()){<p class="text-bg-info w-100 text-center">User added successfully</p>}
+        @if(isUserEdited()){ <p class="text-bg-info w-100 text-center">User edited successfully</p>}
+
+        <div class="modal-body">
+          <section class="d-flex flex-column position-relative">
+            @if(isNameInvalid){<p class="errorMessage">You must write a name
+            </p>}
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text w-25 ">Name:</span>
+              <input class="form-control" [ngClass]="{'is-invalid': isNameInvalid}" type="text"
+                placeholder="Write your name.." formControlName="name" pattern="^[a-zA-Z ]+$" required>
+            </div>
+          </section>
+          <section class="d-flex flex-column position-relative">
+            @if(isLastnameInvalid){<p class="errorMessage">You must write a lastname</p>}
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text w-25">Lastname:</span> <input class="form-control"
+                [ngClass]="{'is-invalid': isLastnameInvalid}" type="text" placeholder="Write your lastname.."
+                formControlName="lastname">
+            </div>
+          </section>
+          <section class="d-flex flex-column position-relative">
+            @if(isAgeInvalid){<p class="errorMessage">You must write a age</p>}
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text w-25">Age:</span> <input class="form-control"
+                [ngClass]="{'is-invalid': isAgeInvalid}" type="number" placeholder="Write your age.."
+                formControlName="age">
+            </div>
+          </section>
+          <section class="d-flex flex-column position-relative">
+            @if(phone.hasError('required') && (email.touched || isSubmitted)){<p class="errorMessage">You must write a
+              phone</p>}
+            @else if(phone.hasError('pattern') && (email.touched || isSubmitted)){<p class="errorMessage">Phone is not
+              valid</p>}
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text w-25">Phone:</span> <input class="form-control"
+                [ngClass]="{'is-invalid': isPhoneInvalid}" type="string" placeholder="Write your phone.."
+                formControlName="phone" required>
+            </div>
+          </section>
+          <section class="d-flex flex-column position-relative">
+            @if(email.hasError('required') && (email.touched || isSubmitted)){
+            <p class="errorMessage">You must write a email</p>
+            }
+            @else if(email.hasError('pattern') && (email.touched || isSubmitted)){
+            <p class="errorMessage">Mail is not valid</p>
+            }
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text w-25">Email:</span> <input class="form-control" type="email"
+                [ngClass]="{'is-invalid': isEmailInvalid}" placeholder="Write your email.." formControlName="email"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+            </div>
+          </section>
+          <section class="d-flex flex-column position-relative">
+            <div class="input-group input-group-sm mb-3 ">
+              <select class="form-select" formControlName="gender">
+                <option value={{null}} selected>Select gender</option>
+                <option value="FEMALE">Female</option>
+                <option value="MALE">Male</option>
+                <option selected value="OTHER">Other</option>
+              </select>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="onClose($event)">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal User Info -->
+<div class="modal fade" id="userInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel">{{user()?.name}} {{user()?.lastname}}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClose($event)"></button>
+      </div>
+      <div class="modal-body">
+        <p>Name: <span class="fw-bold">{{user()?.name}}</span></p>
+        <p>Lastname: <span class="fw-bold">{{user()?.lastname}}</span></p>
+        <p>Age: <span class="fw-bold">{{user()?.age}}</span></p>
+        <p>Phone: <span class="fw-bold">{{user()?.phone}}</span></p>
+        <p>Email: <span class="fw-bold">{{user()?.email}}</span></p>
+        <p>Gender: <span class="fw-bold">{{user()?.gender}}</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose($event)">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
