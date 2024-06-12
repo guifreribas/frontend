@@ -55,6 +55,9 @@ devDependencies:
   '@angular/compiler-cli':
     specifier: ^18.0.0
     version: 18.0.0(@angular/compiler@18.0.0)(typescript@5.4.2)
+  '@types/bootstrap':
+    specifier: ^5.2.10
+    version: 5.2.10
   '@types/jasmine':
     specifier: ~5.1.0
     version: 5.1.0
@@ -3579,6 +3582,12 @@ packages:
     resolution: {integrity: sha512-z9fJ5Im06zvUL548KvYNecEVlA7cVDkGUi6kZusb04mpyEFKCIZJvloCcmpmLaIahDpOQGHaHmG6imtPMmPXGQ==}
     dependencies:
       '@types/node': 20.14.2
+    dev: true
+
+  /@types/bootstrap@5.2.10:
+    resolution: {integrity: sha512-F2X+cd6551tep0MvVZ6nM8v7XgGN/twpdNDjqS1TUM7YFNEtQYWk+dKAnH+T1gr6QgCoGMPl487xw/9hXooa2g==}
+    dependencies:
+      '@popperjs/core': 2.11.8
     dev: true
 
   /@types/connect-history-api-fallback@1.5.4:
