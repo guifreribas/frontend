@@ -143,6 +143,7 @@ export class HomeComponent implements OnInit {
   }
 
   onShowUser(event: Event, user: User | null) {
+    return;
     event.stopPropagation();
     this.user.set(user);
   }
