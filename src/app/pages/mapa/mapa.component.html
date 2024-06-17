@@ -1,5 +1,5 @@
 <h1 class="container border-bottom border-dark-subtle mt-4 text-uppercase">mapa</h1>
-<section class="d-flex flex-row justify-content-cente gap-4 mx-5 mt-5">
+<section class="d-flex flex-row flex-wrap justify-content-cente gap-4 mx-5 mt-5">
   <div>
     <h5>Map style</h5>
     <select class="form-control-sm" type="button" [formControl]="selectStyle" (change)="changeStyle($event)">
@@ -22,7 +22,7 @@
 
   <div>
     <h5>Filter Markers</h5>
-    <section class="d-flex flex-row justify-content-center gap-4 border border-black px-2 rounded-2">
+    <section class="d-flex flex-row flex-wrap  gap-4 border border-black px-2 rounded-2">
       <div class="d-flex flex-row gap-2 align-items-center p-2 py-1 rounded-1">
         <input [formControl]="restaurantCheckbox" type="checkbox" id="filter-restaurants" name="filter-restaurants"
           checked (change)="onCategoryFilterChange($event, 'RESTAURANTS')" />

@@ -17,7 +17,8 @@
     <tbody>
       @for(user of users(); track $index){
       <!-- Button trigger modal -->
-      <tr role="button" (click)="onShowUser($event, user)" data-bs-toggle="modal" data-bs-target="#userInfo">
+      <tr (click)="onShowUser($event, user)">
+        <!-- <tr role="button" (click)="onShowUser($event, user)" data-bs-toggle="modal" data-bs-target="#userInfo"> -->
         <th scope=" row">{{$index + 1}}</th>
         <td>{{user.name}}</td>
         <td>{{user.lastname}}</td>
