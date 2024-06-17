@@ -1,0 +1,48 @@
+.map {
+  width: 100%;
+  height: 100%;
+  max-height: 80vh;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.restaurants {
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvectorified.com%2Fimages%2Frestaurant-icon-png-30.png&f=1&nofb=1&ipt=60f965d237dc7dc05f094f9ac9d8bb67c1e955a66203a8172ef1bd379ea25ac2&ipo=images');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+.hotels {
+  background-color: blue;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+.parkings {
+  background-color: green;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.theaters {
+  background-color: yellow;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.marker {
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F10%2F08%2F18%2F35%2Frestaurant-1724294_1280.png&f=1&nofb=1&ipt=01b1c6bd103eb031a9ab2ec8e07d3e0fd241bc628bea7f7f684e435cdf71344b&ipo=images');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid red;
+  z-index: 100;
+}
