@@ -1,28 +1,19 @@
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
-  NO_ERRORS_SCHEMA,
-  NgModule,
   OnInit,
   inject,
   signal,
 } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
-import {
-  MapboxAddressAutofill,
-  MapboxSearchBox,
-  MapboxGeocoder,
-  config,
-} from '@mapbox/search-js-web';
+import { MapboxAddressAutofill, MapboxSearchBox } from '@mapbox/search-js-web';
 import { environment } from '../../../environments/environment.development';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserModule } from '@angular/platform-browser';
 import {
   AddMapMarker,
-  AddMarkerResponse,
   MapCategories,
   MapMarker,
   MapMarkersResponse,
@@ -39,7 +30,6 @@ import { MapsService } from '../../services/maps.service';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    // MapboxSearchBox,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './mapa.component.html',
@@ -65,6 +55,7 @@ export class MapaComponent implements OnInit {
   ngOnInit(): void {
     this.onConfigMap();
     const search = new MapboxSearchBox();
+    search.accessToken = environment.mapboxKey;
     this.map.addControl(search);
     this.getLngLat();
     const markersCategories: MapCategories[] = [
