@@ -1,0 +1,26 @@
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button border-0" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onHideModal()">
+        </button>
+      </div>
+      <div class="modal-body d-flex flex-column gap-2">
+        <input type="text" class="form-control" placeholder="Title" [formControl]="title">
+        <select name="changeColorEvent" id="ChangeColorEvent" class="form-select">
+          <option value="BLUE" selected>Blue</option>
+          <option value="RED">Red</option>
+          <option value="GREEN">Green</option>
+          <option value="YELLOW">Yellow</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onHideModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onUpdateEvent($event)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

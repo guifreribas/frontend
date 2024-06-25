@@ -23,7 +23,7 @@ export class UsersService {
     return this.http.post<UserAddResponse>('http://localhost:4000/users', user);
   }
   updateUser(user: Partial<User>, userId: string) {
-    console.log(user);
+    user;
     return this.http.put<UserUpdateResponse>(
       `http://localhost:4000/users/${userId}`,
       user
