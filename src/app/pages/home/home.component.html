@@ -16,9 +16,7 @@
     </thead>
     <tbody>
       @for(user of users(); track $index){
-      <!-- Button trigger modal -->
       <tr (click)="onShowUser($event, user)">
-        <!-- <tr role="button" (click)="onShowUser($event, user)" data-bs-toggle="modal" data-bs-target="#userInfo"> -->
         <th scope=" row">{{$index + 1}}</th>
         <td>{{user.name}}</td>
         <td>{{user.lastname}}</td>
@@ -40,9 +38,12 @@
     </tbody>
   </table>
   <section class="d-flex gap-2">
-    <button class="btn btn-outline-info" (click)="exportData()">Download CSV</button>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm" (click)="action.set('ADD')">Add
-      User</button>
+    <button class="btn btn-outline-info" (click)="exportData()">
+      Download CSV
+    </button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userForm" (click)="action.set('ADD')">
+      Add User
+    </button>
   </section>
 </article>
 
