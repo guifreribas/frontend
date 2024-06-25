@@ -173,8 +173,6 @@ export class FullCalendarComponent implements OnInit {
     const dataToUpdate: CalendarEventUpdate = {
       title: this.title.value || '',
       backgroundColor: color || undefined,
-      start: dayjs(this.event().event.start).subtract(1, 'day').toDate(),
-      end: dayjs(this.event().event.end).subtract(1, 'day').toDate(),
     };
     try {
       await firstValueFrom(
@@ -188,6 +186,11 @@ export class FullCalendarComponent implements OnInit {
         'backgroundColor',
         dataToUpdate.backgroundColor
       );
+      if (dataToUpdate.backgroundColor === 'YELLOW') {
+        this.event().event.setProp('textColor', 'black');
+      } else {
+        this.event().event.setProp('textColor', 'white');
+      }
     } catch (err) {
       console.log(err);
     }

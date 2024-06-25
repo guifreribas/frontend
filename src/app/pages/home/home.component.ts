@@ -16,6 +16,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Toast } from 'bootstrap';
+import { ExportToCsvService } from '../../services/export-to-csv.service';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { Toast } from 'bootstrap';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  private exportToCsvService = inject(ExportToCsvService);
   public userService = inject(UsersService);
   public usersResponse = signal<UserResponse | null>(null);
   public users = signal<User[]>([]);
@@ -209,5 +211,9 @@ export class HomeComponent implements OnInit {
       email: this.email.value || '',
       gender: this.gender.value || null,
     };
+  }
+
+  exportData() {
+    this.exportToCsvService.exportToCsv(this.users(), 'users.csv');
   }
 }
