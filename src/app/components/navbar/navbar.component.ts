@@ -7,9 +7,4 @@ import { Component, ViewChild } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  // @ViewChild('navbarNav') navBar!: HTMLElement;
-  // onToggleNavbar() {
-  //   this.navBar.hide();
-  // }
-}
+export class NavbarComponent {}
