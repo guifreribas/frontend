@@ -1,1 +1,17 @@
-<h1>graphics</h1>
+<article class="d-flex flex-column py-4 m-auto w-75 h-75">
+  <h1>graphics</h1>
+  <div class="d-flex gap-2 py-4">
+    <div class="btn" [ngClass]="graphicSelected === 'line' ? 'btn-info' :  'btn-outline-info'"
+      (click)="graphicSelected = 'line'; onGetGraphic({ type: 'bar' })">
+      Line graphic
+    </div>
+    <div class="btn" [ngClass]="graphicSelected === 'bar' ? 'btn-info' :  'btn-outline-info'"
+      (click)="graphicSelected = 'bar'; onGetGraphic({ type: 'line' })">
+      Bar graphic
+    </div>
+  </div>
+
+  @if(graphicSelected === 'line') {<app-graphic-one [graphic]="graphic"></app-graphic-one>}
+  @if(graphicSelected === 'bar') {<app-graphic-two [graphic]="graphic"></app-graphic-two>}
+
+</article>

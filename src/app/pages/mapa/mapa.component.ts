@@ -169,9 +169,7 @@ export class MapaComponent implements OnInit {
 
       marker.remove();
       this.mapService.deleteMapMarker(markerId).subscribe({
-        next: (res) => {
-          console.log('deleteMarker', res);
-        },
+        next: (res) => console.log('deleteMarker', res),
         error: (err) => console.log(err),
       });
     });
@@ -182,9 +180,7 @@ export class MapaComponent implements OnInit {
       this.mapService
         .updateMapMarker({ id: markerId, longitude: lng, latitude: lat })
         .subscribe({
-          next: (res) => {
-            console.log('updateMarker', res);
-          },
+          next: (res) => console.log('updateMarker', res),
           error: (err) => console.log(err),
         });
     });

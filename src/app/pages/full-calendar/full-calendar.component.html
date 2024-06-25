@@ -1,1 +1,46 @@
-<h1>full-calendar</h1>
+<article class="py-3 px-5 w-100 h-100">
+  <div class='demo-app-main'>
+    <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+      <ng-template #eventContent let-arg>
+        <b>{{ arg.timeText }}</b>
+        <i>{{ arg.event.title }}</i>
+      </ng-template>
+    </full-calendar>
+  </div>
+</article>
+
+
+<!-- <app-calendar-modal #editModal [onUpdateEvent]="onUpdateEvent" [onHideModal]="onHideModal"
+  [title]="title"></app-calendar-modal> -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" #editModal>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button border-0" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onHideModal()">
+        </button>
+      </div>
+      <div class="modal-body d-flex flex-column gap-2">
+        <input type="text" class="form-control" placeholder="Title" [formControl]="title">
+        <select id="ChangeColorEvent" class="form-select" [formControl]="color">
+          <option value="BLUE" selected>Blue</option>
+          <option value="RED">Red</option>
+          <option value="GREEN">Green</option>
+          <option value="YELLOW">Yellow</option>
+        </select>
+        <!-- <div class="form-check">
+          <label class="form-check-label" for="allDayEvent">All day event</label>
+          <input type="checkbox" class="form-check-input" id="allDayEvent" [formControl]="allDay">
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onHideModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onUpdateEvent()">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="onDeleteEvent()">Delete event</button>
+      </div>
+    </div>
+  </div>
+</div>
