@@ -23,3 +23,8 @@ export type GraphicResponse = {
   page: string;
   ok: boolean;
 };
+
+export type GraphicAddResponse = {
+  graphic: Graphic;
+  ok: boolean;
+};
