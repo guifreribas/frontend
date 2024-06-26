@@ -1,9 +1,32 @@
 # Frontend
 
-This is the frontend of the Sprint 8 project of It Academy.
+This is the frontend of the Sprint 8 project of It Academy. You can find the backend of the project [here](https://github.com/guifreribas/backend).
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
-# Angular
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Installing
+
+1.  Clone the repo
+2.  Install dependencies
+
+```sh
+pnpm install
+```
+
+3. You must create a environment file inside the `src` folder.
+
+```sh
+ng g environments
+```
+
+4. You must add your Mapbox key in the environment files:
+
+```sh
+mapboxKey: YOUR_MAPBOX_KEY
+```
 
 ## Development server
 
