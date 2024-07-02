@@ -87,6 +87,10 @@ export class FullCalendarComponent implements OnInit {
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.onGetEvents();
+  }
+
+  onGetEvents() {
     this.calendarService.getEvents().subscribe({
       next: (events) => {
         this.calendarOptions.set({
@@ -148,6 +152,8 @@ export class FullCalendarComponent implements OnInit {
               allDay: selectInfo.allDay,
               backgroundColor: 'BLUE',
             });
+
+            this.onGetEvents();
           }
         },
         error: (err) => console.log(err),
